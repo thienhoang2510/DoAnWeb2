@@ -12,7 +12,7 @@ const Users = db.define("profile", {
     type: Sequelize.STRING,
     allowNull: false
   },
-
+ 
   profileName: {
     type: Sequelize.STRING,
     allowNull: false
