@@ -26,3 +26,4 @@ const booking = db.define('booking', {
 });
 
 module.exports = booking;
+ 
