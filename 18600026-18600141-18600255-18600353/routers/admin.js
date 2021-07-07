@@ -7,4 +7,4 @@ router.use("/movie", require("./admin/movie"));
 router.use("/film", require("./admin/film"));
 router.use("/dashboard", require("./admin/dashboard"));
 
-module.exports = router;
+module.exports = router
