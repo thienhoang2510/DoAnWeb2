@@ -23,4 +23,4 @@ async function sendEmail(to, subject, text, html,attachments) {
   return info;
 }
 
-module.exports = sendEmail;
+module.exports = sendEmail
