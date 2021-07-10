@@ -26,7 +26,7 @@ async function uploadImage(filepath,bookingID)
     //     where: {
     //       bookingId : bookingID
     //     }
-    //   }
+    //   } 
     // )
     
 } 
