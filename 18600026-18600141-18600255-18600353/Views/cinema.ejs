@@ -165,7 +165,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="reload()">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -203,7 +203,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Thực hiện</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reload()">Đóng</button>
                       </div>
                     </form>
                   </div>
@@ -311,6 +311,15 @@
       modal.find('.modal-title').text(recipient+' rạp');
       //modal.find('.modal-body input').val('');
     })
+    function reload()
+    {
+      $("#cinemaName").val("");
+          $("#cinemaGroup").val("");
+          $("#cinemaType").val("");
+          $("#cinemaN").val("");
+          $("#cinemaD").val("");
+          $("#ID").val("");
+    }
     function Edit(id)
     {
       debugger

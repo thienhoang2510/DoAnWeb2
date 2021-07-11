@@ -29,5 +29,5 @@ const movie = db.define('movie', {
         allowNull: false
     }
   });
- 
+
 module.exports = movie;

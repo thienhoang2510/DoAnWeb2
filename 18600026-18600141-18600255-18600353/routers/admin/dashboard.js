@@ -10,47 +10,43 @@ const sequelize=new Sequelize(process.env.DATABASE_URL ||'postgres://postgres:ba
 
 router.get('/',async function(req,res){
     var cinemaGroup =await sequelize.query(`SELECT c."cinemagroupName",SUM(b."Amount") as SumAmount, b."DateCreate"
-    FROM "cinemaGroups" as c left join movies as m on c.id = m."filmID"
-    left join bookings as b on m.id = b."movieID"
+    FROM "cinemaGroups" as c join movies as m on c.id = m."filmID"
+    join bookings as b on m.id = b."movieID"
     group by c.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
     var film =await sequelize.query(`SELECT f."filmName",SUM(b."Amount") as SumAmount, b."DateCreate"
-    FROM films AS f left join movies as m on f.id = m."filmID"
-    left join bookings as b on m.id = b."movieID"
+    FROM films AS f join movies as m on f.id = m."filmID"
+    join bookings as b on m.id = b."movieID"
     group by f.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
     res.render('dashboard.ejs',{page: 'infoCinema', cinemaGroup, film });
 })
 
 router.post('/',async function(req,res){
-    const {ID,cinemaName,cinemaGroup, cinemaType,cinemaN,cinemaD} = req.body;
-    console.log(ID);
+    const {DateStart,DateEnd} = req.body;
+    var cinemaGroup =await sequelize.query(`SELECT c."cinemagroupName",SUM(b."Amount") as SumAmount, b."DateCreate"
+    FROM "cinemaGroups" as c join movies as m on c.id = m."filmID"
+    join bookings as b on m.id = b."movieID"
+    where b."DateCreate" >= '`+DateStart+`' and b."DateCreate" <= '`+DateEnd+`'` +`
+    group by c.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
+    var film =await sequelize.query(`SELECT f."filmName",SUM(b."Amount") as SumAmount, b."DateCreate"
+    FROM films AS f join movies as m on f.id = m."filmID"
+    join bookings as b on m.id = b."movieID"
+    where b."DateCreate" >= '`+DateStart+`' and b."DateCreate" <= '`+DateEnd+`'` +`
+    group by f.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
     
-    if(ID != "")
-    {
-        await Cinema.update(
-            {
-                cinemaName: cinemaName,
-                cinemagroupID: cinemaGroup,
-                cinemaType: cinemaType,
-                length: cinemaD,
-                width: cinemaN     
-            },
-            {
-                where:{ id: ID}
-            }
-        )
-    }
-    else
-    {
-        await Cinema.create(
-            {
-                cinemaName: cinemaName,
-                cinemagroupID: cinemaGroup,
-                cinemaType: cinemaType,
-                length: cinemaD,
-                width: cinemaN
-            }
-        )
-    }
-    res.redirect('/admin/dashboard');
+    res.render('dashboard.ejs',{page: 'infoCinema', cinemaGroup, film });
+})
+
+router.post('/load',async (req,res)=>{ 
+    const {DateStart,DateEnd} = req.body;
+    var cinemaGroup =await sequelize.query(`SELECT c."cinemagroupName",SUM(b."Amount") as SumAmount, b."DateCreate"
+    FROM "cinemaGroups" as c join movies as m on c.id = m."filmID"
+    join bookings as b on m.id = b."movieID"
+    where b."DateScreate" >= ${DateStart} and b."DateScreate" <= ${DateEnd}
+    group by c.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
+    var film =await sequelize.query(`SELECT f."filmName",SUM(b."Amount") as SumAmount, b."DateCreate"
+    FROM films AS f join movies as m on f.id = m."filmID"
+    join bookings as b on m.id = b."movieID"
+    group by f.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
+    res.json({cinemaGroup: cinemaGroup, film: film});
 })
 module.exports = router;

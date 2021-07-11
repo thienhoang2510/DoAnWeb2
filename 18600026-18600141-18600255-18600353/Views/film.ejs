@@ -165,7 +165,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="reload()">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -196,7 +196,7 @@
                       <input type='text' name="files" id="files" placeholder="tải ảnh lên" hidden/>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Thực hiện</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"  onclick="reload()">Đóng</button>
                       </div>
                     </div>
                     <div style="float: right;">
@@ -343,6 +343,16 @@
       var modal = $(this)
       modal.find('.modal-title').text(recipient+' phim');
     })
+    function reload()
+    {
+      $("#filmName").val("");
+      $("#DateShow").val("");
+      $("#poster").val("");
+      $("#time").val("");
+      $("#Description").val("");
+      $("#Trailer").val("");
+      $("#ID").val("");
+    }
     function Edit(id)
     {
       var button = $(event.relatedTarget)

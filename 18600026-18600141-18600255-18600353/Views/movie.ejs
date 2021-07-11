@@ -70,19 +70,19 @@
             </a>
           </li>
           <li>
-            <a href="./tables.html">
+            <a href="">
               <i class="nc-icon nc-tile-56"></i>
               <p>Table List</p>
             </a>
           </li>
           <li>
-            <a href="./typography.html">
+            <a href="">
               <i class="nc-icon nc-caps-small"></i>
               <p>Typography</p>
             </a>
           </li>
           <li class="active-pro">
-            <a href="./upgrade.html">
+            <a href="">
               <i class="nc-icon nc-spaceship"></i>
               <p>Upgrade to PRO</p>
             </a>
@@ -165,7 +165,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="reload()">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -196,7 +196,7 @@
                       </div>
                       <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Thời điểm kết thúc:</label>
-                        <input id="DateEnd" name="DateEnd" class="form-control"  type="datetime-local" required/>
+                        <input id="DateEnd" name="DateEnd" class="form-control"  type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"  required/>
                       </div>
                       <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Giá:</label>
@@ -204,7 +204,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Thực hiện</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"  onclick="reload()">Đóng</button>
                       </div>
                     </form>
                   </div>
@@ -248,8 +248,8 @@
                       <th scope="row"><%= i+1%></th>
                       <td><%= cn.filmID%></td>
                       <td><%= cn.cinemaID%></td>
-                      <td><%= cn.DateStart%></td>
-                      <td><%= cn.DateEnd%></td>
+                      <td><%= cn.DateStart.getDate()%>/<%= cn.DateStart.getMonth()%>/<%= cn.DateStart.getFullYear()%> <%= cn.DateStart.getHours()%>:<%= cn.DateStart.getMinutes()%></td>
+                      <td><%= cn.DateEnd.getDate()%>/<%= cn.DateEnd.getMonth()%>/<%= cn.DateEnd.getFullYear()%> <%= cn.DateEnd.getHours()%>:<%= cn.DateEnd.getMinutes()%></td>
                       <td><%= cn.price%></td>
                     </tr>
                     <% } %>
@@ -309,7 +309,7 @@
       var film = $.parseJSON('<%-JSON.stringify(film)%>');
       var cinema = $.parseJSON('<%-JSON.stringify(cinema)%>');
       // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-      demo.initChartsPages();
+      //demo.initChartsPages();
     });
     $('#exampleModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget)
@@ -317,6 +317,15 @@
       var modal = $(this)
       modal.find('.modal-title').text(recipient+' suất chiếu');
     })
+    function reload()
+    {
+      $("#filmID").val("");
+          $("#cinemaID").val("");
+          $("#DateStart").val("");
+          $("#DateEnd").val("");
+          $("#price").val("");
+          $("#ID").val("");
+    }
     function Edit(id)
     {
       debugger
@@ -328,8 +337,31 @@
       for(let i = 0; i < movie.length ; i++ ) 
       {
         let cn = movie[i];
-        var temp1=cn.DateStart.toString().substr(0,16);
-        var temp2=cn.DateEnd.toString().substr(0,16);
+        var DateStart = new Date(cn.DateStart);
+        var DateEnd = new Date(cn.DateEnd);
+        var monthStart = DateStart.getMonth().toString();
+        var dateStart = DateStart.getDate().toString();
+        var monthEnd = DateEnd.getMonth().toString();
+        var dateEnd = DateEnd.getDate().toString();
+        if(DateStart.getMonth()<10)
+        {
+          monthStart = "0"+ DateStart.getMonth().toString();
+        }
+        if(DateStart.getDate()<10)
+        {
+          dateStart = "0"+ DateStart.getDate().toString();
+        }
+        if(DateEnd.getMonth()<10)
+        {
+          monthEnd= "0"+ DateEnd.getMonth().toString();
+        }
+        if(DateEnd.getDate()<10)
+        {
+          dateEnd = "0"+ DateEnd.getDate().toString();
+        }
+        var temp1 = DateStart.getFullYear()+"-"+monthStart+"-"+dateStart+"T"+DateStart.getHours()+":"+DateStart.getMinutes();
+        var temp2 = DateEnd.getFullYear()+"-"+monthEnd+"-"+dateEnd+"T"+DateEnd.getHours()+":"+DateEnd.getMinutes();
+        console.log(temp1);
         if(cn.id==id)
         {
           $("#filmID").val(cn.filmID);
@@ -352,7 +384,5 @@
       document.getElementById("link").setAttribute("href","/admin/movie/:"+lstdelete);
     }
   </script>
-  
 </body>
-
 </html>

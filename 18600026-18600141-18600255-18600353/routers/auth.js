@@ -9,4 +9,5 @@ router.use("/forgotpassword", require("./auth/forgotpassword"));
 router.use("/changepassword", require("./auth/changepassword"));
 router.use("/booking", require("./auth/booking"));
 router.use("/history", require("./auth/history"));
+router.use("/catalog1", require("./auth/catalog1"));
 module.exports = router;

@@ -158,18 +158,24 @@ Coded by www.creative-tim.com
       <!-- End Navbar -->
       <div class="content">
         <div class="row">
-            <label for="recipient-name" class="col-form-label">Thời gian:</label>
+          <form action="" method="POST" class="form-inline">
+            &ensp;&ensp;
+            <label for="recipient-name" class="col-form-label">Thời gian: </label>
+            &ensp;
             <div class="row">
               <div class="col-lg-4 col-md-3 col-sm-2">
-                <input id="DateStart" name="DateStart" class="form-control" type="date"/>
+                <input id="DateStart" name="DateStart" class="form-control" type="date" required/>
               </div>
+              &ensp;
               <div class="col-lg-4 col-md-3 col-sm-2">
-                <input id="DateEnd" name="DateEnd" class="form-control" type="date"/>
+                <input id="DateEnd" name="DateEnd" class="form-control" type="date" required/>
               </div>
+              &ensp;&ensp;
               <div class="col-lg-3 col-md-3 col-sm-2">
-                <button class="form-control btn-success" onclick="btnStatisticClick()">Thống kê</button>
+                <input class="form-control btn-success" type="submit" value="Thống kê"></button>
               </div>
             </div>
+          </form>
         </div>
         <div class="row">
           <div class="col-md-12">
@@ -218,6 +224,7 @@ Coded by www.creative-tim.com
                               <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">Tên cụm rạp</th>
+                                <th scope="col">Ngày Thống kê</th>
                                 <th scope="col">Doanh thu</th>
                               </tr>
                             </thead>
@@ -231,7 +238,8 @@ Coded by www.creative-tim.com
                               <tr>
                                 <th scope="row"><%= i+1%></th>
                                 <td><%= cn.cinemagroupName%></td>
-                                <td><%= cn.SumAmount%></td>
+                                <td><%= cn.DateCreate%></td>
+                                <td><%= cn.sumamount%></td>
                               </tr>
                               <% } %>
                               </tr>
@@ -280,6 +288,7 @@ Coded by www.creative-tim.com
                               <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">Tên phim</th>
+                                <th scope="col">Ngày Thống kê</th>
                                 <th scope="col">Doanh thu</th>
                               </tr>
                             </thead>
@@ -293,7 +302,8 @@ Coded by www.creative-tim.com
                               <tr>
                                 <th scope="row"><%= i+1%></th>
                                 <td><%= cn.filmName%></td>
-                                <td><%= cn.SumAmount%></td>
+                                <td><%= cn.DateCreate%></td>
+                                <td><%= cn.sumamount%></td>
                               </tr>
                               <% } %>
                               </tr>
@@ -338,35 +348,20 @@ Coded by www.creative-tim.com
       </footer>
     </div>
   </div>
-  <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chart JS -->
   <script src="../assets/js/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
   <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
   <script src="../assets/demo/demo.js"></script>
   <script>
     $(document).ready(function() {
       var cinemaGroup = $.parseJSON('<%-JSON.stringify(cinemaGroup)%>');
       var film = $.parseJSON('<%-JSON.stringify(film)%>');
-      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-      demo.initChartsPages();
     });
-    function btnStatisticClick()
-    {
-      if($("#DateStart").val() != null || $("#DateStart").val() != "" || $("#DateEnd").val() != null || $("#DateEnd").val() != "")
-      {
-        cinemaGroup = $.parseJSON('<%-JSON.stringify(cinemaGroup)%>');
-        film = $.parseJSON('<%-JSON.stringify(film)%>');
-      }
-    }
   </script>
 </body>
 

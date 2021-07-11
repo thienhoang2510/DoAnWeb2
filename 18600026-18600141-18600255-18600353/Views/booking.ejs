@@ -118,6 +118,10 @@
            success:function(response){ 
                if(response != null || response != undefined){  
 				   debugger
+				   timeStart.DataTextField = "DateStart";
+				   timeStart.DataValueField = "id";
+				   timeStart.DataSource = response.movie1;
+				   timeStart.DataBind();
                } 
            },  
            error:function(response){  

@@ -45,16 +45,17 @@ app.get('/index2',function (req,res)
 {
     res.render('index2.ejs'); 
 })
-app.get('/catalog1',function (req,res) 
-{
-    res.render('catalog1.ejs'); 
-})
 app.get('/details1/:ID',async function (req,res) 
 {
+  var profile= null;
+    if(req.session.profile!=null)
+    {
+      profile=req.session.profile;
+    }
     const ID = req.params.ID;
     const id=ID.substr(1, ID.length);
     var movie =await sequelize.query(`SELECT * FROM films AS f where f.id=`+id, { type:Sequelize.QueryTypes.SELECT}); 
-    res.render('details1.ejs',{page: 'infoMovie', movie, profile: null }); 
+    res.render('details1.ejs',{page: 'infoMovie', movie, profile }); 
 })
 
 app.use("/auth", require("./routers/auth"));

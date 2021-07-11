@@ -26,6 +26,6 @@ const uploadAvatar = multer({
     } else {
         cb('Lỗi: Đinh dạng hình ảnh không phù hợp!');
     }
-    } 
+    }
 
 module.exports = uploadAvatar;
