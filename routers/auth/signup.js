@@ -26,17 +26,20 @@ router.post('/',async function(req,res){
     
     if(isExits)
     {
+        console.log('1')
         //Email đã được sử dụng
-        res.render('auth/signup',{page:"signup",err:1})
+        res.render('signup.ejs',{page:"signup",err:1})
     }
     else{
         if(password !== confirmPassword)
         {
+            console.log('2')
             //Báo mật khẩu không trùng khớp
-            res.render('auth/signup',{page:"signup",err:2})
+            res.render('signup.ejs',{page:"signup",err:2})
         }
         else
         {
+            console.log('3')
             var passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
            
 
@@ -75,7 +78,8 @@ router.post('/',async function(req,res){
             //Gửi email xác thực đến email dùng để đăng kí
             await sendEmail(Email, 'Xác thực tài khoản email', 'Bạn đã dùng email này để đăng ký tài khoản trên Cinema', html);
             //redirect toi trang thong bao da gui xac thuc toi email
-            res.redirect('/auth/signin');
+            console.log(Email)
+            res.render('signin.ejs');
         }
     }
 })

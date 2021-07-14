@@ -10,6 +10,7 @@ app.set("views", "./views");
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
 const bcrypt = require('bcryptjs');
+const sequelize=new Sequelize(process.env.DATABASE_URL ||'postgres://postgres:baolerop@localhost:5432/ltweb2');
 //const bcrypt = require('bcrypt');
 
 router.get("/", function(req, res) {
@@ -31,6 +32,7 @@ router.post("/", async function(req, res){
       Email: Email
     }
   });
+  console.log(user)
   if(!user)
   {
     //Email or password is wrong
@@ -50,28 +52,14 @@ router.post("/", async function(req, res){
         //check premission of user 
        
         //var url = req.session.url;
-        var profile = await Users.findOne({
-          attributes: ['id','Email', 'profileName', 'phone' ,'permission'],
-          where: {
-            id: user.id
-          }
-        });
-       
+        var profile = user; 
         
-        req.session.profile = profile;
+        req.session.profile = user;
 
         //sau khi signin redirect lai trang do
         //res.redirect('/');
-
-        if(profile.permission="admin")
-        {
-          res.redirect('/admin/dashboard',{movie,profile });
-        }
-        else
-        {
-        var movie =await Sequelize.query(`SELECT * FROM films`, { type:Sequelize.QueryTypes.SELECT}); 
-        res.render('index.ejs', {page: 'infoMovie', movie,profile }); 
-        }
+          var movie =await sequelize.query(`SELECT * FROM films`, { type:Sequelize.QueryTypes.SELECT}); 
+          res.render('index.ejs', {page: 'infoMovie', movie,profile }); 
       }
     }
     else{

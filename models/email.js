@@ -1,13 +1,13 @@
 const nodemailer = require('nodemailer');
 
-async function sendEmail(to, subject, text, html,attachments) {
+async function sendEmail(to, subject, text, html) {
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     secure: false,
     auth: {
       user: process.env.EMAIL_USER|| "phamchibaolx3@gmail.com",
-      pass: process.env.EMAIL_PASSWORD || "chibao123456789",
+      pass: process.env.EMAIL_PASSWORD || "Asdf@123456789",
     },
   });
 
@@ -16,8 +16,7 @@ async function sendEmail(to, subject, text, html,attachments) {
     to, 
     subject,
     text, 
-    html,
-    attachments
+    html
   });
 
   return info;

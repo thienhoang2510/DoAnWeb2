@@ -52,34 +52,27 @@
 							<ul class="header__nav">
 								<!-- dropdown -->
 								<li class="header__nav-item">
-									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
-										<li><a href="/">Home slideshow bg</a></li>
-										<li><a href="index2.html">Home static bg</a></li>
-									</ul>
+									<a class="header__nav-link" href="/auth/booking" id="dropdownMenuHome">Mua Vé</a>
 								</li>
 								<!-- end dropdown -->
 
 								<!-- dropdown -->
 								<li class="header__nav-item">
-									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
+									<a class="dropdown-toggle header__nav-link" href="" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Phim</a>
 
 									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
-										<li><a href="catalog1.html">Catalog Grid</a></li>
-										<li><a href="catalog2.html">Catalog List</a></li>
-										<li><a href="details1.html">Details Movie</a></li>
-										<li><a href="details2.html">Details TV Series</a></li>
+										<li><a href="/auth/catalog1">Phim mới nhất</a></li>
+										<li><a href="/catalog2">Tất cả phim</a></li>
 									</ul>
 								</li>
 								<!-- end dropdown -->
 
 								<li class="header__nav-item">
-									<a href="pricing.html" class="header__nav-link header__nav-link--active">Pricing Plan</a>
+									<a href="/pricing" class="header__nav-link">Rạp/Giá Vé</a>
 								</li>
 
 								<li class="header__nav-item">
-									<a href="faq.html" class="header__nav-link">Help</a>
+									<a href="/faq" class="header__nav-link">Help</a>
 								</li>
 
 								<!-- dropdown -->
@@ -87,10 +80,9 @@
 									<a class="dropdown-toggle header__nav-link header__nav-link--more" href="#" role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon ion-ios-more"></i></a>
 
 									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
-										<li><a href="about.html">About</a></li>
-										<li><a href="signin.html">Sign In</a></li>
-										<li><a href="signup.html">Sign Up</a></li>
-										<li><a href="404.html">404 Page</a></li>
+										<li><a href="/auth/signin">Sign In</a></li>
+										<li><a href="/auth/signup">Sign Up</a></li>
+										<li><a href="/auth/history">History</a></li>
 									</ul>
 								</li>
 								<!-- end dropdown -->
@@ -102,11 +94,22 @@
 								<button class="header__search-btn" type="button">
 									<i class="icon ion-ios-search"></i>
 								</button>
+								<% if(profile==null) {%>
+								<a href="/auth/signin" class="header__sign-in">
 
-								<a href="signin.html" class="header__sign-in">
 									<i class="icon ion-ios-log-in"></i>
 									<span>sign in</span>
 								</a>
+								<% } else{%>	
+								<li class="header__nav-item">
+									<a class="dropdown-toggle header__nav-link" href="/catalog1" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=profile.profileName%></a>
+
+									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
+										<li><a href="/auth/personal">Hồ sơ</a></li>
+										<li><a href="/auth/logout">Đăng xuất</a></li>
+									</ul>
+								</li>
+								<% } %>
 							</div>
 							<!-- end header auth -->
 

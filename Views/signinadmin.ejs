@@ -30,39 +30,39 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
-	<title>FlixGo</title>
+	<title>FlixGo – Online Movies, TV Shows & Cinema HTML Template</title>
 
 </head>
 <body class="body">
 
-	<div class="sign section--bg" data-bg="../img/section/section.jpg">
+	<div class="sign section--bg" data-bg="img/section/section.jpg">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="sign__content">
-						<!-- registration form -->
-						<form action="" class="sign__form" method="POST">
+						<!-- authorization form -->
+						<form action="#" method="post" class="sign__form">
 							<a href="/" class="sign__logo">
 								<img src="../img/logo.svg" alt="">
 							</a>
-                            <div class="sign__group">
-								<input type="password" name="oldpassword" class="sign__input" placeholder="Old Password">
+
+							<div class="sign__group">
+								<input type="text" name="Email" class="sign__input" placeholder="Email" required>
 							</div>
 
 							<div class="sign__group">
-								<input type="password" name="newpassword" class="sign__input" placeholder="New Password">
+								<input type="password" name="password" class="sign__input" placeholder="Password" required>
 							</div>
 
-							<div class="sign__group">
-								<input type="password" name="confirmPassword" class="sign__input" placeholder="Confirm Password">
+							<div class="sign__group sign__group--checkbox">
+								<input id="remember" name="remember" type="checkbox" checked="checked">
+								<label for="remember">Remember Me</label>
 							</div>
 							
-							<button class="sign__btn" type="submit">Đổi mật khẩu</button>
-							<% if(message!=null) {%>
-							<span class="sign__text">*Thao tác lỗi!</span>
-							<% }%>
+							<button class="sign__btn" type="submit">Sign in</button>
+							<span class="sign__text"><a href="/auth/forgotpassword">Forgot password?</a></span>
 						</form>
-						<!-- registration form -->
+						<!-- end authorization form -->
 					</div>
 				</div>
 			</div>
