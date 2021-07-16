@@ -30,4 +30,4 @@ const verifyCode = db.define("Verify", {
 
 });
 
-module.exports = verifyCode
+module.exports = verifyCode;
