@@ -28,4 +28,4 @@ const uploadProduct = multer({
     }
     }
 
-module.exports = uploadProduct
+module.exports = uploadProduct;
