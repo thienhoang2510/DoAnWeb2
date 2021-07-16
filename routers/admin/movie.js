@@ -3,7 +3,7 @@ const router = new Router();
 const Sequelize = require('sequelize')
 const movie = require("../../models/movie");
 const { STRING } = require('sequelize');
-const sequelize=new Sequelize(process.env.DATABASE_URL ||'postgres://postgres:baolerop@localhost:5432/ltweb2');
+const sequelize = require("../../models/dbconnect");
 
 router.get('/',async function(req,res){
     var movie =await sequelize.query(`SELECT * FROM movies`, { type:Sequelize.QueryTypes.SELECT}); 

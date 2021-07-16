@@ -28,11 +28,10 @@ app.use(session({
       }),
        secret: 'keyboard cat'
 }));
-const sequelize=new Sequelize(process.env.DATABASE_URL ||'postgres://postgres:baolerop@localhost:5432/ltweb2');
 
 app.get('/',async function (req,res) 
 {
-    var movie =await sequelize.query(`SELECT * FROM films`, { type:Sequelize.QueryTypes.SELECT}); 
+    var movie =await db.query(`SELECT * FROM films`, { type:Sequelize.QueryTypes.SELECT}); 
     var profile= null;
     if(req.session.profile!=null)
     {
@@ -54,7 +53,7 @@ app.get('/details1/:ID',async function (req,res)
     }
     const ID = req.params.ID;
     const id=ID.substr(1, ID.length);
-    var movie =await sequelize.query(`SELECT * FROM films AS f where f.id=`+id, { type:Sequelize.QueryTypes.SELECT}); 
+    var movie =await db.query(`SELECT * FROM films AS f where f.id=`+id, { type:Sequelize.QueryTypes.SELECT}); 
     res.render('details1.ejs',{page: 'infoMovie', movie, profile }); 
 })
 

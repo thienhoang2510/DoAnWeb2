@@ -13,7 +13,7 @@ const Buffer = require('buffer/').Buffer;
 const fileUpload = require('express-fileupload')
 const app = express();
 app.use(fileUpload());
-const sequelize=new Sequelize(process.env.DATABASE_URL ||'postgres://postgres:baolerop@localhost:5432/ltweb2');
+const sequelize = require("../../models/dbconnect");
 
 router.get('/',async function(req,res){
     var film =await sequelize.query(`SELECT * FROM films`, { type:Sequelize.QueryTypes.SELECT}); 

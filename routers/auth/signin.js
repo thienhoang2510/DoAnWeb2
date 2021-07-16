@@ -10,7 +10,7 @@ app.set("views", "./views");
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
 const bcrypt = require('bcryptjs');
-const sequelize=new Sequelize(process.env.DATABASE_URL ||'postgres://postgres:baolerop@localhost:5432/ltweb2');
+const sequelize = require("../../models/dbconnect");
 //const bcrypt = require('bcrypt');
 
 router.get("/", function(req, res) {
