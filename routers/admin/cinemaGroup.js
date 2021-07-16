@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const { STRING } = require('sequelize');
 const sequelize=new Sequelize(process.env.DATABASE_URL ||'postgres://postgres:baolerop@localhost:5432/ltweb2');
-
+ 
 router.get('/',async function(req,res){
     var cinemaGroup =await sequelize.query(`SELECT * FROM "cinemaGroups"`, { type:Sequelize.QueryTypes.SELECT}); 
     res.render('cinemaGroup.ejs',{page: 'infoCinema', cinemaGroup }); 
