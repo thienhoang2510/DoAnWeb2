@@ -11,7 +11,9 @@ const sequelize=new Sequelize(process.env.DATABASE_URL ||'postgres://postgres:ba
 router.get('/',async function(req,res){
     var cinema =await sequelize.query(`SELECT * FROM cinemas`, { type:Sequelize.QueryTypes.SELECT}); 
     var cinemaGroup =await sequelize.query(`SELECT * FROM "cinemaGroups"`, { type:Sequelize.QueryTypes.SELECT}); 
-    res.render('cinema.ejs',{page: 'infoCinema', cinema,cinemaGroup }); 
+    var cinema1 =await sequelize.query(`SELECT c.id,c."cinemaName",c."cinemaType",cg."cinemagroupName" FROM cinemas as c
+    left join "cinemaGroups" as cg on cg.id = c."cinemagroupID"`, { type:Sequelize.QueryTypes.SELECT}); 
+    res.render('cinema.ejs',{page: 'infoCinema', cinema,cinemaGroup,cinema1 }); 
 })
 
 router.post('/',async function(req,res){

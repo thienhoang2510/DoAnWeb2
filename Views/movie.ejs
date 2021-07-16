@@ -194,16 +194,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% for(let i = 0; i < movie.length ; i++ ) { %>
-                      <% let cn = movie[i] %>
+                    <% for(let i = 0; i < movie1.length ; i++ ) { %>
+                      <% let cn = movie1[i] %>
                     <tr>
                       <th><input type="checkbox" class="fill-control-input" id="a<%= cn.id%>" onclick="check(this.id)"></th>
                       <td>
                           <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-placement="top" title="Edit" data-target="#exampleModal" data-whatever="Cập nhật" id="<%= cn.id%>" Onclick="Edit(this.id)"><i class="fa fa-edit"></i></button>
                       </td>
                       <th scope="row"><%= i+1%></th>
-                      <td><%= cn.filmID%></td>
-                      <td><%= cn.cinemaID%></td>
+                      <td><%= cn.filmName%></td>
+                      <td><%= cn.cinemaName%></td>
                       <td><%= cn.DateStart.getDate()%>/<%= cn.DateStart.getMonth()%>/<%= cn.DateStart.getFullYear()%> <%= cn.DateStart.getHours()%>:<%= cn.DateStart.getMinutes()%></td>
                       <td><%= cn.DateEnd.getDate()%>/<%= cn.DateEnd.getMonth()%>/<%= cn.DateEnd.getFullYear()%> <%= cn.DateEnd.getHours()%>:<%= cn.DateEnd.getMinutes()%></td>
                       <td><%= cn.price%></td>
@@ -262,6 +262,7 @@
     var lstdelete="";
     $(document).ready(function() {
       var movie = $.parseJSON('<%-JSON.stringify(movie)%>');
+      var movie1 = $.parseJSON('<%-JSON.stringify(movie1)%>');
       var film = $.parseJSON('<%-JSON.stringify(film)%>');
       var cinema = $.parseJSON('<%-JSON.stringify(cinema)%>');
       // Javascript method's body can be found in assets/assets-for-demo/js/demo.js

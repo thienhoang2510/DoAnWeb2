@@ -191,8 +191,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% for(let i = 0; i < cinema.length ; i++ ) { %>
-                      <% let cn = cinema[i] %>
+                    <% for(let i = 0; i < cinema1.length ; i++ ) { %>
+                      <% let cn = cinema1[i] %>
                     <tr>
                       <th><input type="checkbox" class="fill-control-input" id="a<%= cn.id%>" onclick="check(this.id)"></th>
                       <td>
@@ -201,7 +201,7 @@
                       <th scope="row"><%= i+1%></th>
                       <td><%= cn.cinemaName%></td>
                       <td><%= cn.cinemaType%></td>
-                      <td><%= cn.cinemagroupID%></td>
+                      <td><%= cn.cinemagroupName%></td>
                     </tr>
                     <% } %>
                   </tbody>
@@ -257,6 +257,7 @@
     var lstdelete="";
     $(document).ready(function() {
       var cinema = $.parseJSON('<%-JSON.stringify(cinema)%>');
+      var cinema1 = $.parseJSON('<%-JSON.stringify(cinema1)%>');
       // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
       demo.initChartsPages();
     });

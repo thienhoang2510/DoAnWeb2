@@ -58,21 +58,16 @@
 
 								<!-- dropdown -->
 								<li class="header__nav-item">
-									<a class="dropdown-toggle header__nav-link" href="" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Phim</a>
-
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
-										<li><a href="/auth/catalog1">Phim mới nhất</a></li>
-										<li><a href="/catalog2">Tất cả phim</a></li>
-									</ul>
+									<a class="header__nav-link" href="/auth/catalog1">Phim</a>
 								</li>
 								<!-- end dropdown -->
 
 								<li class="header__nav-item">
-									<a href="/pricing" class="header__nav-link">Rạp/Giá Vé</a>
+									<a href="#" class="header__nav-link">Rạp/Giá Vé</a>
 								</li>
 
 								<li class="header__nav-item">
-									<a href="/faq" class="header__nav-link">Help</a>
+									<a href="#" class="header__nav-link">Help</a>
 								</li>
 
 								<!-- dropdown -->
@@ -214,7 +209,7 @@
 				<!-- player -->
 				
 				<div class="col-12 col-xl-6">
-					<iframe title="vimeo-player" src="%= film.Trailer%>" width="576" height="300" frameborder="0" allowfullscreen></iframe>
+					<iframe title="vimeo-player" src="<%= film.Trailer%>" width="576" height="300" frameborder="0" allowfullscreen></iframe>
 					<!-- <video controls crossorigin playsinline poster="../../../cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="player">
 						<!-- Video files -->
 						<!-- <source src="https://vimeo.com/552929778" type="video/mp4" size="576">

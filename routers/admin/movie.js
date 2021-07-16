@@ -9,7 +9,10 @@ router.get('/',async function(req,res){
     var movie =await sequelize.query(`SELECT * FROM movies`, { type:Sequelize.QueryTypes.SELECT}); 
     var film =await sequelize.query(`SELECT * FROM films`, { type:Sequelize.QueryTypes.SELECT});
     var cinema =await sequelize.query(`SELECT * FROM cinemas`, { type:Sequelize.QueryTypes.SELECT});
-    res.render('movie.ejs',{page: 'infoCinema', movie,film,cinema }); 
+    var movie1 =await sequelize.query(`SELECT m.id,f."filmName",c."cinemaName",m."DateStart",m."DateEnd",m."price" FROM movies as m 
+    left join films as f on f.id=m."filmID" 
+    left join cinemas as c on c.id = m."cinemaID"`, { type:Sequelize.QueryTypes.SELECT}); 
+    res.render('movie.ejs',{page: 'infoCinema', movie,film,cinema, movie1}); 
 })
 
 router.post('/',async function(req,res){

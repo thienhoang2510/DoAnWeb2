@@ -86,7 +86,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">Quản lý rạp</a>
+            <a class="navbar-brand" href="javascript:;">Quản lý phim</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -149,7 +149,7 @@
                         <label for="recipient-name" class="col-form-label">Trailer:</label>
                         <input type="text" class="form-control" name="Trailer" id="Trailer">
                       </div>
-                      <input type='text' name="files" id="files" placeholder="tải ảnh lên" hidden/>
+                      <input type='text' name="files" id="files"/>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Thực hiện</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"  onclick="reload()">Đóng</button>
@@ -209,7 +209,7 @@
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Danh sách rạp</h5>
+                <h5 class="card-title">Danh sách phim</h5>
               </div>
               <div class="card-body ">
                 <table class="table table-hover table-info">
@@ -308,6 +308,9 @@
       $("#Description").val("");
       $("#Trailer").val("");
       $("#ID").val("");
+      document.getElementById("imgposter").src= '../img/covers/cover2.jpg';
+      //$("#files").val("");
+      $("#poster").val("");
     }
     function Edit(id)
     {
@@ -329,6 +332,8 @@
           $("#Trailer").val(cn.Trailer);
           $("#ID").val(cn.id);
           document.getElementById("imgposter").src= '../img/covers/'+cn.poster;
+          //$("#files").val(cn.poster);
+          $("#poster").val(cn.poster);
         }
       }
     }

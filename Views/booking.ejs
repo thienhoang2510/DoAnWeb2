@@ -30,7 +30,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
-	<title>FlixGo – Online Movies, TV Shows & Cinema HTML Template</title>
+	<title>FlixGo</title>
 
 </head>
 <body class="body">
@@ -115,16 +115,16 @@
            method:'post',  
            dataType:'json', 
 		   data:{'filmID':$('#film').val(), 'cinemaID': $('#cinema').val()},  
-           success:function(response){ 
-               if(response != null || response != undefined){  
+           success:function(data){ 
+               if(data != null || data != undefined){  
 				   debugger
 				   timeStart.DataTextField = "DateStart";
 				   timeStart.DataValueField = "id";
-				   timeStart.DataSource = response.movie1;
-				   timeStart.DataBind();
+				   //timeStart.DataSource = data;
+				   //timeStart.DataBind();
                } 
            },  
-           error:function(response){  
+           error:function(data){  
                alert('server error occured')  
            }  
        });  

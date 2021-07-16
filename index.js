@@ -10,7 +10,7 @@ const path = require('path')
 const RedisStore = require("connect-redis")(session);
 const app = express();
 app.use(fileUpload());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false,limit: '50mb' }));
 const REDIS_URL = process.env.REDIS_URL || "redis://@localhost:6379";
 const redisOption = redisUrlParse(REDIS_URL);
 

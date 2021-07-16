@@ -22,12 +22,13 @@ router.get('/',async function(req,res){
 
 router.post('/',async function(req,res,next){
     const {ID,filmName,DateShow,poster,files,time,Description,Trailer} = req.body;
-    if(files != null || files != "")
+    console.log(files);
+    if(files != null && files != "")
     {
         var matches =files.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
         response = {};
         
-        if (matches.length !== 3) {
+        if (matches.length != 3) {
         return new Error('Invalid input string');
         }
         
