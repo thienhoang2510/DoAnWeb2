@@ -43,7 +43,7 @@
 					<div class="col-12">
 						<div class="header__content">
 							<!-- header logo -->
-							<a href="index.html" class="header__logo">
+							<a href="/" class="header__logo">
 								<img src="../img/logo.svg" alt="">
 							</a>
 							<!-- end header logo -->
@@ -169,10 +169,10 @@
 				<div class="col-12 col-md-12 col-lg-12">
 					<div class="price">
 						<div class="price__item price__item--first"><span>Lịch sử</span></div>
-						<div class="price__item"><div class="col-md-1"><span>STT</span></div><div class="col-md-7"><span>Tên phim</span></div><div class="col-md-2"><span>Ngày đặt vé</span></div><div class="col-md-2"><span>Tổng tiền</span></div></div>
+						<div class="price__item"><div class="col-md-1"><span>STT</span></div><div class="col-md-6"><span>Tên phim</span></div><div class="col-md-1"><span>Số ghế</span></div><div class="col-md-2"><span>Ngày đặt vé</span></div><div class="col-md-2"><span>Tổng tiền</span></div></div>
 						<% for(let i = 0; i < history.length ; i++ ) { %>
 							<% let cn = history[i] %>
-						<div class="price__item"><div class="col-md-1"><span><%= i+1 %></span></div><div class="col-md-7"><span><%= cn.filmName %></span></div><div class="col-md-2"><span><%= cn.DateCreate %></span></div><div class="col-md-2"><span><%= cn.Amount %></span></div></div>
+						<div class="price__item"><div class="col-md-1"><span><%= i+1 %></span></div><div class="col-md-6"><span><%= cn.filmName %></span></div><div class="col-md-1"><span><%= cn.code %></span></div><div class="col-md-2"><span><%= cn.DateCreate %></span></div><div class="col-md-2"><span><%= cn.Amount %></span></div></div>
 						<% } %>
 					</div>
 				</div>

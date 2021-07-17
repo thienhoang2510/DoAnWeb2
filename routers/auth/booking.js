@@ -3,6 +3,7 @@ const router = new Router();
 const Sequelize = require('sequelize')
 const Cinema = require("../../models/cinema");
 const booking = require("../../models/booking");
+const ticket = require("../../models/ticket");
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const { STRING } = require('sequelize');
@@ -40,14 +41,23 @@ router.post('/',async function(req,res){
     }
     var movie =await sequelize.query(`SELECT * FROM movies as m
     where m.id=${timeStart}`, { type:Sequelize.QueryTypes.SELECT});
-    await booking.create(
+    var a = await booking.create(
     {
         profileID: profile.id,
         movieID: timeStart,
         DateCreate: new Date(),
         Amount: movie[0].price
     });
-    
+    var text = "";
+    var possible = "ABCD";
+    var W = Math.floor(Math.random() * 11);
+    await ticket.create(
+    {
+      bookingID: a.id,
+      codeW: W,
+      codeH: "A",
+      price: movie[0].price
+    });
     res.redirect('/auth/history');
 })
 module.exports = router;

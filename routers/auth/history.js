@@ -14,10 +14,11 @@ router.get('/',async function(req,res){
     {
       profile=req.session.profile;
     }
-    var history =await sequelize.query(`SELECT f."filmName", b."DateCreate",b."Amount" FROM bookings as b 
+    var history =await sequelize.query(`SELECT f."filmName", b."DateCreate",b."Amount",CONCAT(t."codeH",t."codeW") as code FROM bookings as b 
     left join profiles as p on b."profileID"=p.id
     left join movies as m on m.id=b."movieID"
     left join films as f on f.id=m."filmID"
+    left join tickets as t on t."bookingID" = b.id
     where p.id=`+profile.id, { type:Sequelize.QueryTypes.SELECT}); 
     res.render('history.ejs',{page: 'infoCinema', history,profile }); 
 })
