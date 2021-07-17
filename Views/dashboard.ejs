@@ -35,6 +35,7 @@ Coded by www.creative-tim.com
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
 </head>
 
 <body class="">
@@ -168,12 +169,8 @@ Coded by www.creative-tim.com
                   <div class="row">
                     <div class="col-md-12">
                       <div class="card ">
-                        <div class="card-header ">
-                          <h5 class="card-title">Users Behavior</h5>
-                          <p class="card-category">24 Hours performance</p>
-                        </div>
                         <div class="card-body ">
-                          <canvas id=chartHours width="400" height="100"></canvas>
+                          <canvas id="myCanvas1" width="900" height="400"></canvas>
                         </div>
                         <div class="card-footer ">
                           <hr>
@@ -232,12 +229,8 @@ Coded by www.creative-tim.com
                   <div class="row">
                     <div class="col-md-12">
                       <div class="card ">
-                        <div class="card-header ">
-                          <h5 class="card-title">Users Behavior</h5>
-                          <p class="card-category">24 Hours performance</p>
-                        </div>
                         <div class="card-body ">
-                          <canvas id=chartHours1 width="400" height="100"></canvas>
+                          <canvas id="myCanvas2" width="900" height="400"></canvas>
                         </div>
                         <div class="card-footer ">
                           <hr>
@@ -334,8 +327,76 @@ Coded by www.creative-tim.com
       var cinemaGroup = $.parseJSON('<%-JSON.stringify(cinemaGroup)%>');
       var film = $.parseJSON('<%-JSON.stringify(film)%>');
       var profile = $.parseJSON('<%-JSON.stringify(profile)%>');
+      var cinemaGroup2 = $.parseJSON('<%-JSON.stringify(cinemaGroup2)%>');
+      var film2 = $.parseJSON('<%-JSON.stringify(film2)%>');
+    
+    var canvas1 = document.getElementById("myCanvas1");
+    var canvas2 = document.getElementById("myCanvas2");
+    var ctx1 = canvas1.getContext("2d");
+    var ctx2 = canvas2.getContext("2d");
+    var lstcinemaGroup = [];
+    var lstcinemaGroupValue = [];
+    for(var i=0;i<cinemaGroup2.length;i++)
+    {
+      lstcinemaGroup.push(cinemaGroup2[i].cinemagroupName);
+      lstcinemaGroupValue.push(cinemaGroup2[i].sumamount);
+    }
+    var lstfilm = [];
+    var lstfilmValue = [];
+    for(var i=0;i<film2.length;i++)
+    {
+      lstfilm.push(film2[i].filmName);
+      lstfilmValue.push(film2[i].sumamount);
+    }
+
+    var myChart1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: lstcinemaGroup,
+            datasets: [{
+                label: 'Cột giá trị',
+                data: lstcinemaGroupValue,
+                backgroundColor: "rgb(100, 100, 100)"
+            }]
+        },
+        options: {
+            responsive: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 5000000,
+                        stepSize: 500000,
+                    }
+                }]
+            }
+        }
     });
-  </script>
+    var myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: lstfilm,
+            datasets: [{
+                label: 'Cột giá trị',
+                data: lstfilmValue,
+                backgroundColor: "rgb(100, 100, 100)"
+            }]
+        },
+        options: {
+            responsive: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                      min: 0,
+                        max: 5000000,
+                        stepSize: 500000,
+                    }
+                }]
+            }
+        }
+    });
+  });
+</script>
 </body>
 
 </html>
