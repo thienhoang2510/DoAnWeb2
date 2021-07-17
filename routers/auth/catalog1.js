@@ -33,7 +33,7 @@ router.get('/:page', async function(req,res){
   const page = pagetemp || 1;
   var film = await sequelize.query(`SELECT * FROM films limit ${perPage} OFFSET ${(perPage * page) - perPage}`, { type:Sequelize.QueryTypes.SELECT}); 
   var count = await sequelize.query(`SELECT count(*) as dem FROM films`, { type:Sequelize.QueryTypes.SELECT});
-  res.render('catalog1.ejs',{page: 'infoFilm', profile,films: film,current: page, pages: Math.ceil(count[0].dem / perPage) }); 
+  res.render('catalog1.ejs',{page: 'infoFilm', profile,films: film,current: Math.ceil(page), pages: Math.ceil(count[0].dem / perPage) }); 
 })
 
 router.post('/',async function(req,res){

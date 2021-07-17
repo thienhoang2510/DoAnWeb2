@@ -9,23 +9,23 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet"> 
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="../css/bootstrap-reboot.min.css">
-	<link rel="stylesheet" href="../css/bootstrap-grid.min.css">
-	<link rel="stylesheet" href="../css/owl.carousel.min.css">
-	<link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" href="../css/nouislider.min.css">
-	<link rel="stylesheet" href="../css/ionicons.min.css">
-	<link rel="stylesheet" href="../css/plyr.css">
-	<link rel="stylesheet" href="../css/photoswipe.css">
-	<link rel="stylesheet" href="../css/default-skin.css">
-	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="/css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="/css/nouislider.min.css">
+	<link rel="stylesheet" href="/css/ionicons.min.css">
+	<link rel="stylesheet" href="/css/plyr.css">
+	<link rel="stylesheet" href="/css/photoswipe.css">
+	<link rel="stylesheet" href="/css/default-skin.css">
+	<link rel="stylesheet" href="/css/main.css">
 
 	<!-- Favicons -->
-	<link rel="icon" type="image/png" href="../icon/favicon-32x32.png" sizes="32x32">
-	<link rel="apple-touch-icon" href="../icon/favicon-32x32.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="../icon/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="../icon/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="../icon/apple-touch-icon-144x144.png">
+	<link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="/icon/favicon-32x32.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
 
 	<meta name="description" content="">
 	<meta name="keywords" content="">
@@ -44,7 +44,7 @@
 						<div class="header__content">
 							<!-- header logo -->
 							<a href="/" class="header__logo">
-								<img src="../img/logo.svg" alt="">
+								<img src="/img/logo.svg" alt="">
 							</a>
 							<!-- end header logo -->
 
@@ -88,7 +88,7 @@
 									</a>
 									<% } else{%>	
 									<li class="header__nav-item">
-										<a class="dropdown-toggle header__nav-link" href="/catalog1" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=profile.profileName%></a>
+										<a class="dropdown-toggle header__nav-link" href="" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=profile.profileName%></a>
 	
 										<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
 											<li><a href="/auth/personal">Hồ sơ</a></li>
@@ -134,7 +134,7 @@
 	<!-- details -->
 	<section class="section details">
 		<!-- details background -->
-		<div class="details__bg" data-bg="../img/home/home__bg.jpg"></div>
+		<div class="details__bg" data-bg="/img/home/home__bg.jpg"></div>
 		<!-- end details background -->
 
 		<!-- details content -->
@@ -155,7 +155,7 @@
 							<!-- card cover -->
 							<div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
 								<div class="card__cover">
-									<img src="../img/covers/<%= film.poster%>" alt="">
+									<img src="/img/covers/<%= film.poster%>" alt="">
 								</div>
 								<div class="header__auth" style="margin-top: 5px;width: 200px;">
 									<a href="/auth/booking" class="header__sign-in" style="margin-right: 80px;">
@@ -201,7 +201,7 @@
 				
 				<div class="col-12 col-xl-6">
 					<iframe title="vimeo-player" src="<%= film.Trailer%>" width="576" height="300" frameborder="0" allowfullscreen></iframe>
-					<!-- <video controls crossorigin playsinline poster="../../../cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="player">
+					<!-- <video controls crossorigin playsinline poster="///cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="player">
 						<!-- Video files -->
 						<!-- <source src="https://vimeo.com/552929778" type="video/mp4" size="576">
 						<source src="https://vimeo.com/552929778" type="video/mp4" size="720">
@@ -481,8 +481,8 @@
 								<div class="row">
 									<!-- gallery item -->
 									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="../img/gallery/project-1.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="../img/gallery/project-1.jpg" itemprop="thumbnail" alt="Image description" />
+										<a href="/img/gallery/project-1.jpg" itemprop="contentUrl" data-size="1920x1280">
+											<img src="/img/gallery/project-1.jpg" itemprop="thumbnail" alt="Image description" />
 										</a>
 										<figcaption itemprop="caption description">Some image caption 1</figcaption>
 									</figure>
@@ -490,8 +490,8 @@
 
 									<!-- gallery item -->
 									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="../img/gallery/project-2.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="../img/gallery/project-2.jpg" itemprop="thumbnail" alt="Image description" />
+										<a href="/img/gallery/project-2.jpg" itemprop="contentUrl" data-size="1920x1280">
+											<img src="/img/gallery/project-2.jpg" itemprop="thumbnail" alt="Image description" />
 										</a>
 										<figcaption itemprop="caption description">Some image caption 2</figcaption>
 									</figure>
@@ -499,8 +499,8 @@
 
 									<!-- gallery item -->
 									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="../img/gallery/project-3.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="../img/gallery/project-3.jpg" itemprop="thumbnail" alt="Image description" />
+										<a href="/img/gallery/project-3.jpg" itemprop="contentUrl" data-size="1920x1280">
+											<img src="/img/gallery/project-3.jpg" itemprop="thumbnail" alt="Image description" />
 										</a>
 										<figcaption itemprop="caption description">Some image caption 3</figcaption>
 									</figure>
@@ -508,8 +508,8 @@
 
 									<!-- gallery item -->
 									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="../img/gallery/project-4.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="../img/gallery/project-4.jpg" itemprop="thumbnail" alt="Image description" />
+										<a href="/img/gallery/project-4.jpg" itemprop="contentUrl" data-size="1920x1280">
+											<img src="/img/gallery/project-4.jpg" itemprop="thumbnail" alt="Image description" />
 										</a>
 										<figcaption itemprop="caption description">Some image caption 4</figcaption>
 									</figure>
@@ -517,8 +517,8 @@
 
 									<!-- gallery item -->
 									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="../img/gallery/project-5.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="../img/gallery/project-5.jpg" itemprop="thumbnail" alt="Image description" />
+										<a href="/img/gallery/project-5.jpg" itemprop="contentUrl" data-size="1920x1280">
+											<img src="/img/gallery/project-5.jpg" itemprop="thumbnail" alt="Image description" />
 										</a>
 										<figcaption itemprop="caption description">Some image caption 5</figcaption>
 									</figure>
@@ -526,8 +526,8 @@
 
 									<!-- gallery item -->
 									<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="../img/gallery/project-6.jpg" itemprop="contentUrl" data-size="1920x1280">
-											<img src="../img/gallery/project-6.jpg" itemprop="thumbnail" alt="Image description" />
+										<a href="/img/gallery/project-6.jpg" itemprop="contentUrl" data-size="1920x1280">
+											<img src="/img/gallery/project-6.jpg" itemprop="thumbnail" alt="Image description" />
 										</a>
 										<figcaption itemprop="caption description">Some image caption 6</figcaption>
 									</figure>
@@ -553,7 +553,7 @@
 						<div class="col-6 col-sm-4 col-lg-6">
 							<div class="card">
 								<div class="card__cover">
-									<img src="../img/covers/cover.jpg" alt="">
+									<img src="/img/covers/cover.jpg" alt="">
 									<a href="#" class="card__play">
 										<i class="icon ion-ios-play"></i>
 									</a>
@@ -574,7 +574,7 @@
 						<div class="col-6 col-sm-4 col-lg-6">
 							<div class="card">
 								<div class="card__cover">
-									<img src="../img/covers/cover2.jpg" alt="">
+									<img src="/img/covers/cover2.jpg" alt="">
 									<a href="#" class="card__play">
 										<i class="icon ion-ios-play"></i>
 									</a>
@@ -594,7 +594,7 @@
 						<div class="col-6 col-sm-4 col-lg-6">
 							<div class="card">
 								<div class="card__cover">
-									<img src="../img/covers/cover3.jpg" alt="">
+									<img src="/img/covers/cover3.jpg" alt="">
 									<a href="#" class="card__play">
 										<i class="icon ion-ios-play"></i>
 									</a>
@@ -616,7 +616,7 @@
 						<div class="col-6 col-sm-4 col-lg-6">
 							<div class="card">
 								<div class="card__cover">
-									<img src="../img/covers/cover4.jpg" alt="">
+									<img src="/img/covers/cover4.jpg" alt="">
 									<a href="#" class="card__play">
 										<i class="icon ion-ios-play"></i>
 									</a>
@@ -637,7 +637,7 @@
 						<div class="col-6 col-sm-4 col-lg-6">
 							<div class="card">
 								<div class="card__cover">
-									<img src="../img/covers/cover5.jpg" alt="">
+									<img src="/img/covers/cover5.jpg" alt="">
 									<a href="#" class="card__play">
 										<i class="icon ion-ios-play"></i>
 									</a>
@@ -658,7 +658,7 @@
 						<div class="col-6 col-sm-4 col-lg-6">
 							<div class="card">
 								<div class="card__cover">
-									<img src="../img/covers/cover6.jpg" alt="">
+									<img src="/img/covers/cover6.jpg" alt="">
 									<a href="#" class="card__play">
 										<i class="icon ion-ios-play"></i>
 									</a>
@@ -689,8 +689,8 @@
 				<div class="col-12 col-md-3">
 					<h6 class="footer__title">Download Our App</h6>
 					<ul class="footer__app">
-						<li><a href="#"><img src="../img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
-						<li><a href="#"><img src="../img/google-play-badge.png" alt=""></a></li>
+						<li><a href="#"><img src="/img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
+						<li><a href="#"><img src="/img/google-play-badge.png" alt=""></a></li>
 					</ul>
 				</div>
 				<!-- end footer list -->
@@ -803,18 +803,18 @@
 	</div>
 
 	<!-- JS -->
-	<script src="../js/jquery-3.3.1.min.js"></script>
-	<script src="../js/bootstrap.bundle.min.js"></script>
-	<script src="../js/owl.carousel.min.js"></script>
-	<script src="../js/jquery.mousewheel.min.js"></script>
-	<script src="../js/jquery.mCustomScrollbar.min.js"></script>
-	<script src="../js/wNumb.js"></script>
-	<script src="../js/nouislider.min.js"></script>
-	<script src="../js/plyr.min.js"></script>
-	<script src="../js/jquery.morelines.min.js"></script>
-	<script src="../js/photoswipe.min.js"></script>
-	<script src="../js/photoswipe-ui-default.min.js"></script>
-	<script src="../js/main.js"></script>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/jquery.mousewheel.min.js"></script>
+	<script src="/js/jquery.mCustomScrollbar.min.js"></script>
+	<script src="/js/wNumb.js"></script>
+	<script src="/js/nouislider.min.js"></script>
+	<script src="/js/plyr.min.js"></script>
+	<script src="/js/jquery.morelines.min.js"></script>
+	<script src="/js/photoswipe.min.js"></script>
+	<script src="/js/photoswipe-ui-default.min.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 
 </html>

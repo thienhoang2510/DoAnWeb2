@@ -44,6 +44,7 @@ router.post('/', async function(req,res){
                 where:{ id: profile.id}
             }
         )
+        req.session.destroy();
         res.redirect('/auth/signin');
     }
 });
