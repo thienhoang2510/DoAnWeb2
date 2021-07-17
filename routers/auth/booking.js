@@ -33,7 +33,7 @@ router.post('/load',async (req,res)=>{
 })
 
 router.post('/',async function(req,res){
-    const {film,cinema,timeStart} = req.body;
+    const {film,cinema,timeStart,codeW,codeH} = req.body;
     var profile= null;
     if(req.session.profile!=null)
     {
@@ -48,14 +48,11 @@ router.post('/',async function(req,res){
         DateCreate: new Date(),
         Amount: movie[0].price
     });
-    var text = "";
-    var possible = "ABCD";
-    var W = Math.floor(Math.random() * 11);
     await ticket.create(
     {
       bookingID: a.id,
-      codeW: W,
-      codeH: "A",
+      codeW: codeW,
+      codeH: codeH,
       price: movie[0].price
     });
     res.redirect('/auth/history');

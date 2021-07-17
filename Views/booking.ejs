@@ -45,8 +45,9 @@
 							<a href="/" class="sign__logo">
 								<img src="../img/logo.svg" alt="">
 							</a>
-
+							
 							<div class="sign__group">
+								<span style="float: left;">Phim:</span>&emsp;&emsp;&ensp;
 								<select class="selectpicker sign__input" mbsc-dropdown name="film" id="film" onchange="load()">
 									<% for(let i = 0; i < film.length ; i++ ) { %>
 										<% let cn = film[i] %>
@@ -54,8 +55,8 @@
 									<% } %>
 								</select>
 							</div>
-
 							<div class="sign__group">
+								<span style="float: left;">Rạp:</span>&emsp;&emsp;&nbsp;&ensp;
 								<select class="selectpicker sign__input" mbsc-dropdown name="cinema" id="cinema" onchange="load()">
 									<% for(let i = 0; i < cinema.length ; i++ ) { %>
 										<% let cn = cinema[i] %>
@@ -63,13 +64,36 @@
 									<% } %>
 								</select>
 							</div>
-
 							<div class="sign__group">
+								<span style="float: left;">Suất Chiếu:</span>
 								<select class="selectpicker sign__input" mbsc-dropdown name="timeStart" id="timeStart">
 									<% for(let i = 0; i < movie.length ; i++ ) { %>
 										<% let cn = movie[i] %>
 									<option value="<%= cn.id%>"><%= cn.DateStart.getDate()%>-<%=cn.DateStart.getMonth()%>-<%=cn.DateStart.getFullYear()%> <%=cn.DateStart.getHours()%>:<%=cn.DateStart.getMinutes()%></option>
 									<% } %>
+								</select>
+							</div>
+							<div class="sign__group">
+								<span style="float: left;">Hàng ghế:</span>&nbsp;
+								<select class="selectpicker sign__input" mbsc-dropdown name="codeH" id="codeH">
+									<option value="A">hàng A</option>
+									<option value="B">hàng B</option>
+									<option value="C">hàng C</option>
+									<option value="D">hàng D</option>
+								</select>
+							</div>
+							<div class="sign__group">
+								<span style="float: left;">Ghế:</span>&emsp;&emsp;&nbsp;&ensp;
+								<select class="selectpicker sign__input" mbsc-dropdown name="codeW" id="codeW">
+									<option value="1">ghế 1</option>
+									<option value="2">ghế 2</option>
+									<option value="3">ghế 3</option>
+									<option value="4">ghế 4</option>
+									<option value="5">ghế 5</option>
+									<option value="6">ghế 6</option>
+									<option value="7">ghế 7</option>
+									<option value="8">ghế 8</option>
+									<option value="9">ghế 9</option>
 								</select>
 							</div>
 							<button class="sign__btn" type="submit">Mua vé</button>
