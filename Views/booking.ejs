@@ -110,23 +110,33 @@
 	function load()
 	{   
 		debugger
-       $.ajax({  
+		$.ajax({  
            url:'/auth/booking/load',  
-           method:'post',  
+           method:'POST',  
            dataType:'json', 
 		   data:{'filmID':$('#film').val(), 'cinemaID': $('#cinema').val()},  
            success:function(data){ 
-               if(data != null || data != undefined){  
-				   debugger
-				   timeStart.DataTextField = "DateStart";
-				   timeStart.DataValueField = "id";
-				   //timeStart.DataSource = data;
-				   //timeStart.DataBind();
+               if(data.length > 0){  
+					$("#timeStart").empty();
+					var a = new Date();
+					for(var i=0; i< data.length;i++)
+					{
+						var a = new Date(data[i].DateStart);
+						var x = document.getElementById("timeStart");
+			   			var option = document.createElement("option");
+						option.text = a.getDate()+"-"+a.getMonth()+"-"+a.getFullYear()+"  "+ a.getHours()+":"+a.getMinutes()
+						option.value = data[i].id;
+						x.add(option,x[i]);
+					}
                } 
+			   else
+			   {
+				   $("#timeStart").empty();
+			   }
            },  
            error:function(data){  
                alert('server error occured')  
            }  
-       });  
+       });    
     }
 </script>

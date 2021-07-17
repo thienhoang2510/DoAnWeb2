@@ -17,16 +17,18 @@ router.get('/',async function(req,res){
     }
     var cinema =await sequelize.query(`SELECT * FROM cinemas`, { type:Sequelize.QueryTypes.SELECT}); 
     var film =await sequelize.query(`SELECT * FROM films`, { type:Sequelize.QueryTypes.SELECT}); 
-    var movie = await sequelize.query(`SELECT m.id,m."filmID",m."cinemaID",m."DateStart" FROM movies as m`, { type:Sequelize.QueryTypes.SELECT}); 
+    var movie = await sequelize.query(`SELECT m.id,m."filmID",m."cinemaID",m."DateStart" FROM movies as m
+    where m."filmID"=${film[0].id} and m."cinemaID"=${cinema[0].id}`, { type:Sequelize.QueryTypes.SELECT}); 
     res.render('booking.ejs',{page: 'infoCinema', movie,cinema,film, profile }); 
 })
 
 router.post('/load',async (req,res)=>{ 
-    const {filmID,cinemaID} = req.body;
-    var movie1 = await sequelize.query(`SELECT m.id,m."DateStart" FROM movies as m
-    where m."filmID"=${filmID} and m."cinemaID" = ${cinemaID}`, { type:Sequelize.QueryTypes.SELECT});
-    console.log(movie1);
-    res.json(movie1);
+  const {filmID,cinemaID} = req.body;
+  console.log(filmID +" - "+ cinemaID);
+  var data = await sequelize.query(`SELECT m.id,m."DateStart" FROM movies as m
+  where m."filmID"=${filmID} and m."cinemaID" = ${cinemaID}`, { type:Sequelize.QueryTypes.SELECT});
+  console.log(data);
+  res.json(data);
 })
 
 router.post('/',async function(req,res){
@@ -37,8 +39,7 @@ router.post('/',async function(req,res){
       profile=req.session.profile;
     }
     var movie =await sequelize.query(`SELECT * FROM movies as m
-    where m.id=${timeStart}`, { type:Sequelize.QueryTypes.SELECT}); 
-    console.log(movie[0].price)
+    where m.id=${timeStart}`, { type:Sequelize.QueryTypes.SELECT});
     await booking.create(
     {
         profileID: profile.id,
