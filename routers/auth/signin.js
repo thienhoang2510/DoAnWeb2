@@ -32,27 +32,22 @@ router.post("/", async function(req, res){
       Email: Email
     }
   });
-  console.log('1')
   if(!user)
   {
-    console.log('2')
     //Email or password is wrong
     //res.render('auth/signin', {page:"signin",err:1});
     res.render('signin.ejs'); 
   }
   else
   {
-    console.log('3')
     if(bcrypt.compareSync(password,user.password))
     {
-      console.log('4')
       if(!user.status)
       {
         res.send('Vui lòng xác thực tài khoản email trước khi đăng nhập')
       }
       else
       {
-        console.log('5')
         //check premission of user 
        
         //var url = req.session.url;
@@ -62,14 +57,13 @@ router.post("/", async function(req, res){
         console.log(user);
 
         //sau khi signin redirect lai trang do
+        //res.redirect('url');
+        var movie =await sequelize.query(`SELECT * FROM films`, { type:Sequelize.QueryTypes.SELECT}); 
+        res.render('index.ejs', {page: 'infoMovie', movie,profile }); 
         //res.redirect('/');
-          var movie =await sequelize.query(`SELECT * FROM films`, { type:Sequelize.QueryTypes.SELECT}); 
-          res.render('index.ejs', {page: 'infoMovie', movie,profile }); 
-          //res.redirect('/');
       }
     }
     else{
-      console.log('6')
         //Email or password is wrong
         //res.render('auth/signin', {page:"signin",err:1});
         res.render('signin.ejs'); 
