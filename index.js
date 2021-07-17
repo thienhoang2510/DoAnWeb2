@@ -32,13 +32,14 @@ app.use(session({
 app.get('/',async function (req,res) 
 {
     var movie =await db.query(`SELECT * FROM films`, { type:Sequelize.QueryTypes.SELECT}); 
+    var movie1 =await db.query(`SELECT * FROM films limit 12`, { type:Sequelize.QueryTypes.SELECT}); 
     var profile= null;
     if(req.session.profile!=null)
     {
       profile=req.session.profile;
     }
     //info.trailer = info.trailer.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/');
-    res.render('index.ejs', {page: 'infoMovie', movie,profile }); 
+    res.render('index.ejs', {page: 'infoMovie', movie,profile,movie1 }); 
 })
 app.get('/index2',function (req,res)
 {

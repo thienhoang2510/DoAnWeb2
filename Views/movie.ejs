@@ -336,7 +336,23 @@
       if (checkBox.checked == true){
         lstdelete =lstdelete + id.substr(1, id.length-1)+",";
       } 
-      else{
+      else 
+      {
+        lstdelete.substring(1,lstdelete.length-1);
+        var lstID = lstdelete.split(',');
+        for(var i = 0; i< lstID.length ;i++)
+        {
+          if(id.substr(1, id.length-1) == lstID[i])
+          {
+            lstID.splice(i, 1);
+          }
+        }
+        lstdelete = "";
+        for(var i = 0; i< lstID.length ;i++)
+        {
+          if(lstID[i] != undefined && lstID[i] != "")
+          lstdelete = lstdelete + lstID[i]+",";
+        }
       }
       document.getElementById("link").setAttribute("href","/admin/movie/:"+lstdelete);
     }

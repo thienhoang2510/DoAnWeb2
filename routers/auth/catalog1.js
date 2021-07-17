@@ -16,7 +16,7 @@ router.get('/',async function(req,res){
     {
       profile=req.session.profile;
     }
-  let perPage = 3; // số lượng sản phẩm xuất hiện trên 1 page
+  let perPage = 18; // số lượng sản phẩm xuất hiện trên 1 page
   let page = req.params.page || 1; 
   var film = await sequelize.query(`SELECT * FROM films limit ${perPage} OFFSET  ${(perPage * page) - perPage}`, { type:Sequelize.QueryTypes.SELECT}); 
   var count = await sequelize.query(`SELECT count(*) as dem FROM films`, { type:Sequelize.QueryTypes.SELECT});
@@ -28,7 +28,7 @@ router.get('/:page', async function(req,res){
     {
       profile=req.session.profile;
     }
-  let perPage = 3; // số lượng sản phẩm xuất hiện trên 1 page
+  let perPage = 18; // số lượng sản phẩm xuất hiện trên 1 page
   const pagetemp=req.params.page.substr(1, req.params.page.length);
   const page = pagetemp || 1;
   var film = await sequelize.query(`SELECT * FROM films limit ${perPage} OFFSET ${(perPage * page) - perPage}`, { type:Sequelize.QueryTypes.SELECT}); 
@@ -36,14 +36,15 @@ router.get('/:page', async function(req,res){
   res.render('catalog1.ejs',{page: 'infoFilm', profile,films: film,current: Math.ceil(page), pages: Math.ceil(count[0].dem / perPage) }); 
 })
 
-router.post('/',async function(req,res){
+router.post('/',async function(req,res)
+{
   const { tbsearch } = req.body;
   var profile= null;
-    if(req.session.profile!=null)
-    {
-      profile=req.session.profile;
-    }
-  let perPage = 3; // số lượng sản phẩm xuất hiện trên 1 page
+  if(req.session.profile!=null)
+  {
+    profile=req.session.profile;
+  }
+  let perPage = 18; // số lượng sản phẩm xuất hiện trên 1 page
   let page = req.params.page || 1; 
   var film = await sequelize.query(`SELECT * FROM films as f where f."filmName" like N'%`+tbsearch+`%' limit ${perPage} OFFSET  ${(perPage * page) - perPage}`, { type:Sequelize.QueryTypes.SELECT}); 
   var count = await sequelize.query(`SELECT count(*) as dem FROM films as f where f."filmName" like N'%`+tbsearch+`%'`, { type:Sequelize.QueryTypes.SELECT});

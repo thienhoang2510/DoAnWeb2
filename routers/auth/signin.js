@@ -59,7 +59,8 @@ router.post("/", async function(req, res){
         //sau khi signin redirect lai trang do
         //res.redirect('url');
         var movie =await sequelize.query(`SELECT * FROM films`, { type:Sequelize.QueryTypes.SELECT}); 
-        res.render('index.ejs', {page: 'infoMovie', movie,profile }); 
+        var movie1 =await sequelize.query(`SELECT * FROM films limit 12`, { type:Sequelize.QueryTypes.SELECT}); 
+        res.render('index.ejs', {page: 'infoMovie', movie,profile,movie1 }); 
         //res.redirect('/');
       }
     }
