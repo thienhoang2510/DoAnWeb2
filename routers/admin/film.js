@@ -22,7 +22,7 @@ router.get('/',async function(req,res){
 
 router.post('/',async function(req,res,next){
     const {ID,filmName,DateShow,poster,files,time,Description,Trailer} = req.body;
-    console.log(files);
+    console.log(poster);
     if(files != null && files != "")
     {
         var matches =files.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
@@ -47,19 +47,37 @@ router.post('/',async function(req,res,next){
     }
     if(ID != "")
     {
-        await film.update(
-            {
-                filmName: filmName,
-                DateShow: DateShow,
-                poster: poster,
-                time: time,
-                Description: Description,
-                Trailer: Trailer   
-            },
-            {
-                where:{ id: ID}
-            }
-        )
+        if(poster != "" && poster != undefined)
+        {
+            await film.update(
+                {
+                    filmName: filmName,
+                    DateShow: DateShow,
+                    poster: poster,
+                    time: time,
+                    Description: Description,
+                    Trailer: Trailer   
+                },
+                {
+                    where:{ id: ID}
+                }
+            )
+        }
+        else
+        {
+            await film.update(
+                {
+                    filmName: filmName,
+                    DateShow: DateShow,
+                    time: time,
+                    Description: Description,
+                    Trailer: Trailer   
+                },
+                {
+                    where:{ id: ID}
+                }
+            )
+        }
     }
     else
     {

@@ -17,7 +17,8 @@ router.get('/',async function(req,res){
 
 router.post('/',async function(req,res){
     const {ID,filmID,cinemaID, DateStart,DateEnd,price} = req.body;
-    console.log(ID);
+
+    console.log(DateStart);
     
     if(ID != "")
     {
