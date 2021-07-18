@@ -52,7 +52,15 @@ router.post("/", async function(req, res){
           FROM films AS f join movies as m on f.id = m."filmID"
           join bookings as b on m.id = b."movieID"
           group by f.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
-          res.render('dashboard.ejs',{page: 'infoCinema', cinemaGroup, film,profile });
+          var cinemaGroup2 =await sequelize.query(`SELECT c."cinemagroupName",SUM(b."Amount") as SumAmount
+          FROM "cinemaGroups" as c join movies as m on c.id = m."filmID"
+          join bookings as b on m.id = b."movieID"
+          group by c.id`, { type:Sequelize.QueryTypes.SELECT}); 
+          var film2 =await sequelize.query(`SELECT f."filmName",SUM(b."Amount") as SumAmount
+          FROM films AS f join movies as m on f.id = m."filmID"
+          join bookings as b on m.id = b."movieID"
+          group by f.id`, { type:Sequelize.QueryTypes.SELECT}); 
+          res.render('dashboard.ejs',{page: 'infoCinema', cinemaGroup, film,cinemaGroup2, film2,profile });
         }
     }
     else{
