@@ -14,18 +14,22 @@ router.get('/',async function(req,res){
     {
       profile=req.session.profile;
     }
-    var cinemaGroup =await sequelize.query(`SELECT c."cinemagroupName",SUM(b."Amount") as SumAmount, b."DateCreate"
-    FROM "cinemaGroups" as c join movies as m on c.id = m."filmID"
+    var cinemaGroup =await sequelize.query(`SELECT cg."cinemagroupName",SUM(b."Amount") as SumAmount, b."DateCreate"
+    FROM "cinemaGroups" as cg
+    join cinemas as c on c."cinemagroupID" = cg.id
+    join movies as m on c.id = m."cinemaID"
     join bookings as b on m.id = b."movieID"
-    group by c.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
+    group by cg.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
     var film =await sequelize.query(`SELECT f."filmName",SUM(b."Amount") as SumAmount, b."DateCreate"
     FROM films AS f join movies as m on f.id = m."filmID"
     join bookings as b on m.id = b."movieID"
     group by f.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
-    var cinemaGroup2 =await sequelize.query(`SELECT c."cinemagroupName",SUM(b."Amount") as SumAmount
-    FROM "cinemaGroups" as c join movies as m on c.id = m."filmID"
+    var cinemaGroup2 =await sequelize.query(`SELECT cg."cinemagroupName",SUM(b."Amount") as SumAmount
+    FROM "cinemaGroups" as cg
+    join cinemas as c on c."cinemagroupID" = cg.id
+    join movies as m on c.id = m."cinemaID"
     join bookings as b on m.id = b."movieID"
-    group by c.id`, { type:Sequelize.QueryTypes.SELECT}); 
+    group by cg.id`, { type:Sequelize.QueryTypes.SELECT}); 
     var film2 =await sequelize.query(`SELECT f."filmName",SUM(b."Amount") as SumAmount
     FROM films AS f join movies as m on f.id = m."filmID"
     join bookings as b on m.id = b."movieID"
@@ -40,21 +44,25 @@ router.post('/',async function(req,res){
       profile=req.session.profile;
     }
     const {DateStart,DateEnd} = req.body;
-    var cinemaGroup =await sequelize.query(`SELECT c."cinemagroupName",SUM(b."Amount") as SumAmount, b."DateCreate"
-    FROM "cinemaGroups" as c join movies as m on c.id = m."filmID"
+    var cinemaGroup =await sequelize.query(`SELECT cg."cinemagroupName",SUM(b."Amount") as SumAmount, b."DateCreate"
+    FROM "cinemaGroups" as cg
+    join cinemas as c on c."cinemagroupID" = cg.id
+    join movies as m on c.id = m."cinemaID"
     join bookings as b on m.id = b."movieID"
     where b."DateCreate" >= '`+DateStart+`' and b."DateCreate" <= '`+DateEnd+`'` +`
-    group by c.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
+    group by cg.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
     var film =await sequelize.query(`SELECT f."filmName",SUM(b."Amount") as SumAmount, b."DateCreate"
     FROM films AS f join movies as m on f.id = m."filmID"
     join bookings as b on m.id = b."movieID"
     where b."DateCreate" >= '`+DateStart+`' and b."DateCreate" <= '`+DateEnd+`'` +`
     group by f.id, b."DateCreate"`, { type:Sequelize.QueryTypes.SELECT}); 
-    var cinemaGroup2 =await sequelize.query(`SELECT c."cinemagroupName",SUM(b."Amount") as SumAmount
-    FROM "cinemaGroups" as c join movies as m on c.id = m."filmID"
+    var cinemaGroup2 =await sequelize.query(`SELECT cg."cinemagroupName",SUM(b."Amount") as SumAmount
+    FROM "cinemaGroups" as cg
+    join cinemas as c on c."cinemagroupID" = cg.id
+    join movies as m on c.id = m."cinemaID"
     join bookings as b on m.id = b."movieID"
     where b."DateCreate" >= '`+DateStart+`' and b."DateCreate" <= '`+DateEnd+`'` +`
-    group by c.id`, { type:Sequelize.QueryTypes.SELECT}); 
+    group by cg.id`, { type:Sequelize.QueryTypes.SELECT}); 
     var film2 =await sequelize.query(`SELECT f."filmName",SUM(b."Amount") as SumAmount
     FROM films AS f join movies as m on f.id = m."filmID"
     join bookings as b on m.id = b."movieID"
