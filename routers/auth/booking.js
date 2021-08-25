@@ -38,23 +38,27 @@ router.post('/',async function(req,res){
     if(req.session.profile!=null)
     {
       profile=req.session.profile;
+      var movie =await sequelize.query(`SELECT * FROM movies as m
+      where m.id=${timeStart}`, { type:Sequelize.QueryTypes.SELECT});
+      var a = await booking.create(
+      {
+          profileID: profile.id,
+          movieID: timeStart,
+          DateCreate: new Date(),
+          Amount: movie[0].price
+      });
+      await ticket.create(
+      {
+        bookingID: a.id,
+        codeW: codeW,
+        codeH: codeH,
+        price: movie[0].price
+      });
+      res.redirect('/auth/history');
     }
-    var movie =await sequelize.query(`SELECT * FROM movies as m
-    where m.id=${timeStart}`, { type:Sequelize.QueryTypes.SELECT});
-    var a = await booking.create(
+    else
     {
-        profileID: profile.id,
-        movieID: timeStart,
-        DateCreate: new Date(),
-        Amount: movie[0].price
-    });
-    await ticket.create(
-    {
-      bookingID: a.id,
-      codeW: codeW,
-      codeH: codeH,
-      price: movie[0].price
-    });
-    res.redirect('/auth/history');
+      res.render('signin.ejs'); 
+    }
 })
 module.exports = router;

@@ -47,15 +47,19 @@ app.get('/index2',function (req,res)
 })
 app.get('/details1/:ID',async function (req,res) 
 {
-  var profile= null;
+    var profile= null;
     if(req.session.profile!=null)
     {
       profile=req.session.profile;
+      const ID = req.params.ID;
+      const id=ID.substr(1, ID.length);
+      var movie =await db.query(`SELECT * FROM films AS f where f.id=`+id, { type:Sequelize.QueryTypes.SELECT}); 
+      res.render('details1.ejs',{page: 'infoMovie', movie, profile }); 
     }
-    const ID = req.params.ID;
-    const id=ID.substr(1, ID.length);
-    var movie =await db.query(`SELECT * FROM films AS f where f.id=`+id, { type:Sequelize.QueryTypes.SELECT}); 
-    res.render('details1.ejs',{page: 'infoMovie', movie, profile }); 
+    else
+    {
+      res.render('signin.ejs'); 
+    }
 })
 
 app.use("/auth", require("./routers/auth"));
