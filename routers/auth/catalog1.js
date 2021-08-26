@@ -46,7 +46,7 @@ router.post('/',async function(req,res)
   }
   let perPage = 18; // số lượng sản phẩm xuất hiện trên 1 page
   let page = req.params.page || 1; 
-  var film = await sequelize.query(`SELECT * FROM films as f where f."filmName" like N'%`+tbsearch+`%' limit ${perPage} OFFSET  ${(perPage * page) - perPage}`, { type:Sequelize.QueryTypes.SELECT}); 
+  var film = await sequelize.query(`SELECT * FROM films as f where lower(f."filmName") like lower(N'%`+tbsearch+`%') limit ${perPage} OFFSET  ${(perPage * page) - perPage}`, { type:Sequelize.QueryTypes.SELECT}); 
   var count = await sequelize.query(`SELECT count(*) as dem FROM films as f where f."filmName" like N'%`+tbsearch+`%'`, { type:Sequelize.QueryTypes.SELECT});
   res.render('catalog1.ejs',{page: 'infoFilm', profile,films: film,current: page, pages: Math.ceil(count[0].dem / perPage) }); 
 })
